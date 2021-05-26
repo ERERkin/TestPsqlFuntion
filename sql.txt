@@ -1,0 +1,19 @@
+create table emp (
+	p_id serial primary key, 
+	p_name VARCHAR(255), 
+	p_age INT, 
+	p_salary int
+);
+
+CREATE OR REPLACE FUNCTION update_emp(p_name VARCHAR(255), p_age INT, p_salary int)
+  RETURNS INT
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO emp (p_name, p_age, p_salary) VALUES (p_name, p_age, p_salary);
+  RETURN 1;
+END;
+$$;
+
+
+SELECT update_emp('a',1,1);
